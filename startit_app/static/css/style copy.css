@@ -396,6 +396,6 @@ body{
     transform: scale(1.2);
 }
 
-.id_username_helptext {
+.helptext {
     display: none;
 }

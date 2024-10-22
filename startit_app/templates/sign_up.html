@@ -6,6 +6,11 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Квесты Белая Мишка</title>
+    <style>
+        .helptext {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -40,12 +45,14 @@
                 <div class="auth-tab-active">Регистрация</div>
                 <div class="auth-x">X</div>
             </div>
-                    {% csrf_token %}
-                    {{ form }}
-                    <div class="auth-footer">Авторизуясь через социальные сети, вы соглашаетесь с правилами пользования сайтом и с политикой обработки персональных данных <br> Форма защищена Google reCAPTCHA (политика обработки персональных данных, условия работы)</div>
-                    <p class="help"> Если у вас нет аккаунта, перейдите по <a href="{% url 'login_page' %}">ССЫЛКЕ</a></p>                
-                </div>
-            </div>
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn-submit">Зарегистрироваться</button>
+                <div class="auth-footer">Авторизуясь через социальные сети, вы соглашаетесь с правилами пользования сайтом и с политикой обработки персональных данных <br> Форма защищена Google reCAPTCHA (политика обработки персональных данных, условия работы)</div>
+            
+                <p class="help"> Если у вас есть аккаунт, перейдите по <a href="{% url 'login_page' %}">ССЫЛКЕ</a></p>                
+            </form>
         </div>
     </main>
     <script src="{% static 'script/script.js' %}"></script>

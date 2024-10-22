@@ -19,17 +19,22 @@
             </div>
         </div>
         <nav id="menu" class="menu">
-            <div class="container">
-                <ul>
-                    <div class="border-menu"></div>
-                    <li><a href="{% url 'home_page'%}"><img src="{% static 'images/menu-img/Q-home.svg' %}" alt="">Главная</a></li>
-                    <li><a href="#"><img src="{% static 'images/menu-img/Q-profile.svg' %}" alt="">Профиль</a></li>
-                    <li><a href="#"><img src="{% static 'images/menu-img/Q-my_reserve.svg' %}" alt="">Мои бро́ни</a></li>
-                    <li><a href="#"><img src="{% static 'images/menu-img/Q-my_like.svg' %}" alt="">Лайки</a></li>
-                    <li><a href="#"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Выйти с аккаунта</a></li>
-                </ul>
-            </div>
-        </nav>
+          <div class="container">
+              <ul>
+                  <div class="border-menu"></div>
+                  <li><a href="{% url 'home_page'%}"><img src="{% static 'images/menu-img/Q-home.svg' %}" alt="">Главная</a></li>
+                  <li><a href="#"><img src="{% static 'images/menu-img/Q-profile.svg' %}" alt="">Профиль</a></li>
+                  <li><a href="#"><img src="{% static 'images/menu-img/Q-my_reserve.svg' %}" alt="">Мои бро́ни</a></li>
+                  <li><a href="#"><img src="{% static 'images/menu-img/Q-my_like.svg' %}" alt="">Лайки</a></li>
+                  {% if not user.is_authenticated %}
+                  <li><a href="{% url 'sign_up_page' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Создать аккаунт</a></li>
+                  <li><a href="{% url 'login_page' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Зайти в аккаунт</a></li>
+              {% else %}
+                  <li><a href="{% url 'logout_action' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">{{ user.username }} Выйти с аккаунта</a></li>
+              {% endif %}                
+              </ul>
+          </div>
+      </nav>
     </header>
     <main>
       <div class="quest-info">

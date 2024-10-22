@@ -3,6 +3,8 @@ from .models import Quest, addresesQ, infotxt
 from django.contrib.auth import login, authenticate, logout
 from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+
 def home_page(request):
     quests = Quest.objects.all().order_by('-created_at')
     unique_ages = Quest.objects.values('age__name').distinct()
@@ -35,32 +37,33 @@ def quests_by_home_page(request, slug):
     }
     return render(request, "./quests_by_addresesQ.html", context)
 
-def sign_up_page (request):
+def sign_up_page(request):
     if request.method == "POST":
-        form =  NewUserForm(request.POST)
+        form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect('lodin_page')
+            return redirect('login_page')
+            
     else:
-        form =NewUserForm()
+        form = NewUserForm()
+
     context = {
-        'form' : form
+        'form': form
     }
     return render(request, "sign_up.html", context)
 
 def login_page(request):
     if request.method == "POST":
-            form = AuthenticationForm(request.POST)
+            form = AuthenticationForm(request,data=request.POST)
             if form.is_valid():
-                username = form.cleaned_data('username')
-                password = form.cleaned_data('password')
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
                 user = authenticate(username=username, password=password)
                 if user is not None:
                     login(request, user)
                     return redirect('home_page')
     else:
         form = AuthenticationForm()
-
     context = {
         'form': form
     }
