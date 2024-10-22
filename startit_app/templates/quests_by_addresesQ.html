@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'css/style copy.css' %}">
+    <title>Квесты Белая Мишка</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <span class="header-txt">
+                    <img src="{% static 'images/menu-page-img/Q-logo.svg' %}" alt="" class="logo">КВЕСТ <br> Белая Мишка
+                </span>
+                <img src="{% static 'images/menu-page-img/Q-menu.svg' %}" alt="" class="menu-btn" onclick="toggleMenu()">
+            </div>
+        </div>
+        <nav id="menu" class="menu">
+            <div class="container">
+                <ul>
+                    <div class="border-menu"></div>
+                    <li><a href="{% url 'home_page'%}"><img src="{% static 'images/menu-img/Q-home.svg' %}" alt="">Главная</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-profile.svg' %}" alt="">Профиль</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-my_reserve.svg' %}" alt="">Мои бро́ни</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-my_like.svg' %}" alt="">Лайки</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Выйти с аккаунта</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+        {% for quest in quests %}
+        <div class="quest-card">
+            <div class="quest-container">
+                <div>
+                    <a href="{% url 'book_page'  pk=quest.pk%}" class="quest-title">{{ quest.name }}</a>
+                </div>
+                <div class="quest-image">
+                    <img src= {{ quest.image_url }} alt="" class="card-photo">
+                </div>
+                <p class="quest-description">
+                    {{ quest.description }}
+                </p>
+                <div class="quest-details">
+                    <p>Сложность: <span><strong>{{ quest.slozhno.name }}</strong></span></p>
+                    <p>Страшность: <span><strong>{{ quest.strashno.name }}</strong></span></p>
+                </div>
+                <div class="quest-footer">
+                    <button class="reserve-btn">
+                        <span class="icon">
+                            <img src="{% static 'images/menu-page-img/Q-reserve.svg' %}" alt="" class="reserve-icon">
+                        </span> 
+                        Забронировать
+                    </button>
+                    <img src="{% static 'images/menu-page-img/Q-like.svg' %}" alt="" class="like-icon" id="likeBtn">
+                    <span class="age"><strong>{{ quest.age.name }}</strong></span>
+                </div>                
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </main>+
+    <script src="{% static 'script/script.js' %}"></script>
+</body>
+</html>

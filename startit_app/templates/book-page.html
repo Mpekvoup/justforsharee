@@ -1,0 +1,82 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style copy.css' %}">
+    <title>Квесты Белая Мишка</title>
+  </head>
+  <body>
+    <header>
+      <header>
+        <div class="header">
+            <div class="container">
+                <span class="header-txt">
+                    <img src="{% static 'images/menu-page-img/Q-logo.svg' %}" alt="" class="logo">КВЕСТ <br> Белая Мишка
+                </span>
+                <img src="{% static 'images/menu-page-img/Q-menu.svg' %}" alt="" class="menu-btn" onclick="toggleMenu()">
+            </div>
+        </div>
+        <nav id="menu" class="menu">
+            <div class="container">
+                <ul>
+                    <div class="border-menu"></div>
+                    <li><a href="{% url 'home_page'%}"><img src="{% static 'images/menu-img/Q-home.svg' %}" alt="">Главная</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-profile.svg' %}" alt="">Профиль</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-my_reserve.svg' %}" alt="">Мои бро́ни</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-my_like.svg' %}" alt="">Лайки</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Выйти с аккаунта</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+      <div class="quest-info">
+        <div class="container">
+            {% if quest %}
+            <div class="title-info">{{ quest.name }}</div>
+            <div class="quest-image">
+                <img src="{{ quest.image_url }}" alt="{{ quest.name }}" class="card-photo">
+            </div>
+            <div class="quest-description">
+                {{ quest.description }}
+            </div>
+            <div class="quest-details">
+                <p>Сложность: <span>{{ quest.slozhno.name }}</span></p>
+                <p>Страшность: <span>{{ quest.strashno.name }}</span></p>
+                <p>Цена:<span> {{ quest.price}}&#8376;</span></p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+        </div>
+      </div>
+      <div class="contact">
+        <div class="container">
+          <div class="border"></div>
+          {% for address in addresesq %}
+          <div class="contact-title">{{ address.name }}</div>
+          <div class="contact-nav">
+            <nav><img src="{% static 'images/book-page-img/Q-map-point.svg' %}" alt="">{{ address.addres }}</nav>
+            <nav><img src="{% static 'images/book-page-img/Q-phone-icon.svg' %}" alt="">{{ address.phone }}</nav>
+            <nav><img src="{% static 'images/book-page-img/Q-check-point.svg' %}" alt="">{{ address.ostanovka }}</nav>
+          </div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="container">
+          <div class="border"></div>
+          <div class="feature-nav">
+            <nav><img src="{% static 'images/book-page-img/Q-Wi_Fi.svg' %}" alt=""><b>Wi-Fi:</b> {{ address.wifi }}</nav>
+            <nav><img src="{% static 'images/book-page-img/Q-car.svg' %}" alt=""><b>Парковка:</b> {{ address.parking }}</nav>
+            <nav><img src="{% static 'images/book-page-img/Q-wait.svg' %}" alt="">Зал ожидания: {{ address.waitroom }}</nav>
+            {% endfor %}
+          </div>
+          <div class="border"></div>
+        </div>
+      </div>
+    </main>
+    <script src="{% static '/script/script.js' %}"></script>
+  </body>
+</html>

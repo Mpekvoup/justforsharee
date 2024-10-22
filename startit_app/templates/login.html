@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Квесты Белая Мишка</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <span class="header-txt"> <img src="{% static 'images/menu-page-img/Q-logo.svg' %}" alt="" class="logo">КВЕСТ <br> Белая Мишка</span>
+                <img src="{% static 'images/menu-page-img/Q-menu.svg' %}" alt="" class="menu-btn" onclick="toggleMenu()">
+            </div>
+        </div>
+        <nav id="menu" class="menu">
+            <div class="container">
+                <ul>
+                    <div class="border-menu"></div>
+                    <li><a href="{% url 'home_page' %}"><img src="{% static 'images/menu-img/Q-home.svg' %}" alt="">Главная</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-profile.svg' %}" alt="">Профиль</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-my_reserve.svg' %}" alt="">Мои бро́ни</a></li>
+                    <li><a href="#"><img src="{% static 'images/menu-img/Q-my_like.svg' %}" alt="">Лайки</a></li>
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'sign_up_page' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Создать аккаунт</a></li>
+                    <li><a href="{% url 'login_page' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Зайти в аккаунт</a></li>
+                    {% else %}
+                    <li><a href="{% url 'logout_action' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">{{ user.username }} Выйти с аккаунта</a></li>
+                    {% endif %}              
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-tab-active">Автаризация</div>
+                <div class="auth-tab">Регистрация</div>
+                <div class="auth-x">X</div>
+            </div>
+            <div class="auth-body">
+                <div class="auth-form">
+                    {% csrf_token %}
+                    {{ form }}
+                    <label for="userName">UserName*</label>
+                    <input type="text" placeholder="UserName" required>
+
+                    <label for="userName">Password*</label>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn-sumbit">Войти</button>
+                    <div class="auth-footer">Авторизуясь через социальные сети, вы соглашаетесь с правилами пользования сайтом и с политикой обработки персональных данных <br> Форма защищена Google reCAPTCHA (политика обработки персональных данных, условия работы)</div>
+                    <p class="help"> Если у вас нет аккаунта перейдите по <a href="{% url 'sign_up_page' %}" class="help">ССЫЛКЕ</a></p>   
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="{% static 'script/script.js' %}"></script>
+</body>
+</html>
