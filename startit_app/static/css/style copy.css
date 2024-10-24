@@ -49,7 +49,7 @@
 }
 body{
     height: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 150px;
     background-color: var(--Dark);
 }
 
@@ -106,6 +106,14 @@ body{
     border: 2px solid var(--Light);
 }
 .quest-container{
+    color: var(--Light);
+    background-color: var(--Black);
+    margin: 20px 0px 0px 0px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 12px;
+
+}
+.quest-container1{
     color: var(--Light);
     background-color: var(--Black);
     margin: 20px 20px 0px 20px;
@@ -399,3 +407,22 @@ body{
 .helptext {
     display: none;
 }
+.access {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300vh;
+}
+.access .dark-text {
+    color: var(--Secondary);
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 20px;
+
+}
+.help{
+    margin-top: 30px;
+}
+
+
+

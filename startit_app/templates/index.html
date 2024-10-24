@@ -44,27 +44,26 @@
                 {% endfor %}
             </div>
         </div>
-        
         <div class="filter">
             <div class="container">
                 <h2>Фильтр:</h2>
                 <div class="filter-buttons">
-                    <a href="#" class="active">Все</a>
+                    <a href="{% url 'home_page' %}" class="active">Все</a>
                     {% for age in unique_ages %}
-                        <a href="#">{{ age.age__name }}</a>
+                        <a href="{% url 'filtered_quests' 'age' age.age__name %}">{{ age.age__name }}</a>
                     {% endfor %}
                     {% for slozhno in unique_slozhno %}
-                        <a href="#">{{ slozhno.slozhno__name }}</a>
+                        <a href="{% url 'filtered_quests' 'slozhno' slozhno.slozhno__name %}">{{ slozhno.slozhno__name }}</a>
                     {% endfor %}
                     {% for strashno in unique_strashno %}
-                        <a href="#">{{ strashno.strashno__name }}</a>
+                        <a href="{% url 'filtered_quests' 'strashno' strashno.strashno__name %}">{{ strashno.strashno__name }}</a>
                     {% endfor %}
                 </div>
             </div>
-        </div>                
+        </div>             
         {% for quest in quests %}
         <div class="quest-card">
-            <div class="quest-container">
+            <div class="quest-container1">
                 <div>
                     <a href="{% url 'book_page' pk=quest.pk %}" class="quest-title">{{ quest.name }}</a>
                 </div>

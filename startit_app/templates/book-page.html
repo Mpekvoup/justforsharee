@@ -37,6 +37,7 @@
       </nav>
     </header>
     <main>
+      {% if user.is_authenticated %}
       <div class="quest-info">
         <div class="container">
             {% if quest %}
@@ -82,6 +83,15 @@
         </div>
       </div>
     </main>
-    <script src="{% static '/script/script.js' %}"></script>
+    {% else %}
+    <section class="access">
+       <div class="container">
+       <h1 class="title">Пожалуйста, с начала зарегестрируйтесь потом , вы можете взаимодейстовать </h1>
+       <p class="help"> Если у вас нет аккаунта перейдите по <a href="{% url 'sign_up_page' %}" class="help">ССЫЛКЕ</a></p>
+       <p class="help"> Если у вас есть аккаунт, перейдите по <a href="{% url 'login_page' %}">ССЫЛКЕ</a></p>  
+      </div>
+       </section>
+       {% endif %}
+       <script src="{% static '/script/script.js' %}"></script>
   </body>
 </html>
