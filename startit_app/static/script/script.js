@@ -21,7 +21,7 @@ function toggleMenu() {
 //     });
 // });
 
-//Функция изминение стиля кнопки котекории
+//Функция изминение стиля кнопки категории
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.filter-buttons a')
 

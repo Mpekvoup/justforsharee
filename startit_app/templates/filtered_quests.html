@@ -48,21 +48,21 @@
             <div class="container">
                 <h2>Фильтр:</h2>
                 <div class="filter-buttons">
-                    <a href="{% url 'home_page' %}" class="active">Все</a>
+                    <a href="{% url 'home_page' %}" class="{% if not filter_type %}active{% endif %}">Все</a>
                     {% for age in unique_ages %}
-                        <a href="{% url 'filtered_quests' 'age' age.age__name %}">{{ age.age__name }}</a>
+                        <a href="{% url 'filtered_quests' 'age' age.age__name %}" class="{% if filter_type == 'age' and age.age__name == picked_filter %}active{% endif %}">{{ age.age__name }}</a>
                     {% endfor %}
                     {% for slozhno in unique_slozhno %}
-                        <a href="{% url 'filtered_quests' 'slozhno' slozhno.slozhno__name %}">{{ slozhno.slozhno__name }}</a>
+                        <a href="{% url 'filtered_quests' 'slozhno' slozhno.slozhno__name %}" class="{% if filter_type == 'slozhno' and slozhno.slozhno__name == picked_filter %}active{% endif %}">{{ slozhno.slozhno__name }}</a>
                     {% endfor %}
                     {% for strashno in unique_strashno %}
-                        <a href="{% url 'filtered_quests' 'strashno' strashno.strashno__name %}">{{ strashno.strashno__name }}</a>
+                        <a href="{% url 'filtered_quests' 'strashno' strashno.strashno__name %}" class="{% if filter_type == 'strashno' and strashno.strashno__name == picked_filter %}active{% endif %}">{{ strashno.strashno__name }}</a>
                     {% endfor %}
                 </div>
+                
             </div>
         </div> 
         <div class="container">
-            <h2 style="color:#ffffff; font-size: 20px; margin-top: 20px;">Квесты по фильтру: {{ filter_value }}</h2>
             <div class="quest-list">
                 {% if quests %}
                     {% for quest in quests %}

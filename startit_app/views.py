@@ -73,28 +73,25 @@ def logout_action(request):
     logout(request)
     return redirect('home_page')
 
-def filtered_quests(request, filter_type, filter_value):
-    if filter_type == 'age':
-        quests = Quest.objects.filter(age__name=filter_value)
-    elif filter_type == 'slozhno':
-        quests = Quest.objects.filter(slozhno__name=filter_value)
-    elif filter_type == 'strashno':
-        quests = Quest.objects.filter(strashno__name=filter_value)
-    else:
-        quests = Quest.objects.all()
+def filtered_quests(request, filter_type=None, filter_value=None):
+    quests = Quest.objects.all()
 
-    unique_ages = Quest.objects.values('age__name').distinct()
-    unique_slozhno = Quest.objects.values('slozhno__name').distinct()
-    unique_strashno = Quest.objects.values('strashno__name').distinct()
+    if filter_type == 'age':
+        quests = quests.filter(age__name=filter_value)
+    elif filter_type == 'slozhno':
+        quests = quests.filter(slozhno__name=filter_value)
+    elif filter_type == 'strashno':
+        quests = quests.filter(strashno__name=filter_value)
     infotxts = infotxt.objects.all()
 
     context = {
         'quests': quests,
+        'unique_ages': Quest.objects.values('age__name').distinct(),
+        'unique_slozhno': Quest.objects.values('slozhno__name').distinct(),
+        'unique_strashno': Quest.objects.values('strashno__name').distinct(),
+        'picked_filter': filter_value,  
         'filter_type': filter_type,
-        'filter_value': filter_value,
-        'unique_ages': unique_ages,
-        'unique_slozhno': unique_slozhno,
-        'unique_strashno': unique_strashno,
-        'infotxts': infotxts
+        'infotxts' : infotxts,
     }
+
     return render(request, 'filtered_quests.html', context)
