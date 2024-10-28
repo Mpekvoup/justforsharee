@@ -1,42 +1,6 @@
-{% load static %} 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style copy.css' %}">
-    <title>Квесты Белая Мишка</title>
-  </head>
-  <body>
-    <header>
-      <header>
-        <div class="header">
-            <div class="container">
-                <span class="header-txt">
-                    <img src="{% static 'images/menu-page-img/Q-logo.svg' %}" alt="" class="logo">КВЕСТ <br> Белая Мишка
-                </span>
-                <img src="{% static 'images/menu-page-img/Q-menu.svg' %}" alt="" class="menu-btn" onclick="toggleMenu()">
-            </div>
-        </div>
-        <nav id="menu" class="menu">
-          <div class="container">
-              <ul>
-                  <div class="border-menu"></div>
-                  <li><a href="{% url 'home_page'%}"><img src="{% static 'images/menu-img/Q-home.svg' %}" alt="">Главная</a></li>
-                  <li><a href="#"><img src="{% static 'images/menu-img/Q-profile.svg' %}" alt="">Профиль</a></li>
-                  <li><a href="#"><img src="{% static 'images/menu-img/Q-my_reserve.svg' %}" alt="">Мои бро́ни</a></li>
-                  <li><a href="#"><img src="{% static 'images/menu-img/Q-my_like.svg' %}" alt="">Лайки</a></li>
-                  {% if not user.is_authenticated %}
-                  <li><a href="{% url 'sign_up_page' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Создать аккаунт</a></li>
-                  <li><a href="{% url 'login_page' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">Зайти в аккаунт</a></li>
-              {% else %}
-                  <li><a href="{% url 'logout_action' %}"><img src="{% static 'images/menu-img/Q-leave.svg' %}" alt="">{{ user.username }} Выйти с аккаунта</a></li>
-              {% endif %}                
-              </ul>
-          </div>
-      </nav>
-    </header>
-    <main>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
       {% if user.is_authenticated %}
       <div class="quest-info">
         <div class="container">
@@ -86,12 +50,10 @@
     {% else %}
     <section class="access">
        <div class="container">
-       <h1 class="title">Пожалуйста, с начала зарегестрируйтесь потом , вы можете взаимодейстовать </h1>
-       <p class="help"> Если у вас нет аккаунта перейдите по <a href="{% url 'sign_up_page' %}" class="help">ССЫЛКЕ</a></p>
-       <p class="help"> Если у вас есть аккаунт, перейдите по <a href="{% url 'login_page' %}">ССЫЛКЕ</a></p>  
+       <h1 class="auth-footer">Пожалуйста, с начала зарегестрируйтесь потом , вы можете взаимодейстовать </h1>
+       <p class="auth-footer"> Если у вас нет аккаунта перейдите по <a href="{% url 'sign_up_page' %}" class="help">ССЫЛКЕ</a></p>
+       <p class="auth-footer"> Если у вас есть аккаунт, перейдите по <a href="{% url 'login_page' %}">ССЫЛКЕ</a></p>  
       </div>
        </section>
        {% endif %}
-       <script src="{% static '/script/script.js' %}"></script>
-  </body>
-</html>
+{% endblock  %}

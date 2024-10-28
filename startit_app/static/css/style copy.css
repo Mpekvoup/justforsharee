@@ -81,7 +81,7 @@ body{
 .filter-buttons a {
     display: inline-block;
     margin: 4px 0;
-    width: 118px;
+    width: 105px;
     height: 32px;
     background-color: var(--Light);
     color: var(--Black);
@@ -151,6 +151,7 @@ body{
     color: var(--Light);  
 }
 .reserve-btn{
+    text-decoration: none;
     position: relative;
     top: 2px;
     border: none;
@@ -262,11 +263,18 @@ body{
     margin-right: 5px;
 }
 .auth-card{
+    min-width: 335px;
+    max-width: 500px;
     background-color: var(--Black);
     margin: 100px 20px 0px 20px;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.auth-card_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .auth-header{
     color: var(--Light);
@@ -274,40 +282,19 @@ body{
     align-items: center;
     display: flex;
 }
-.auth-tab {
-    color: var(--Dark);
-    cursor: pointer;
-    padding-bottom: 5px;
-}
+
 
 .auth-tab, .auth-tab-active{
     text-align: center;
 }
 
-.auth-header .auth-tab::after {
-    display: flex;
-    position: absolute;
-    content: '';
-    width: 125px;
-    height: 2.5px;
-    background-color: var(--Light);
-    top: 143.5px;
-    left: 40px;
-    z-index: 1;
-    margin-bottom: 20px;
+.auth-x{
+    margin-top: -17px;
 }
-
-.auth-header .auth-tab-active::after {
-    display: flex;
-    position: absolute;
-    content: '';
-    width: 125px;
-    height: 2.5px;
-    background-color: var(--Dark);
-    top: 143.5px;
-    left: 165px;
-    z-index: 1;
-    margin-bottom: 20px;
+.auth-x a{
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--Light);
 }
 
 .auth-headers{
@@ -315,34 +302,20 @@ body{
     justify-content: space-between;
     align-items: center;
     display: flex;
+    margin-bottom: 10px;
 }
 
-.auth-headers .auth-tab::after {
-    display: flex;
-    position: absolute;
-    content: '';
-    width: 125px;
-    height: 2.5px;
-    background-color: var(--Light);
-    top: 143.5px;
-    left: 165px;
-    z-index: 1;
-    margin-bottom: 20px;
+.auth-tab {
+    color: var(--Dark);
+    cursor: pointer;
+    border-bottom: var(--Dark) 2px solid;
+    width: 50%;
+    text-decoration: none;
 }
-
-.auth-headers .auth-tab-active::after {
-    display: flex;
-    position: absolute;
-    content: '';
-    width: 125px;
-    height: 2.5px;
-    background-color: var(--Dark);
-    top: 143.5px;
-    left: 40px;
-    z-index: 1;
-    margin-bottom: 20px;
+.auth-tab-active{
+    border-bottom: var(--Light) 2px solid;
+    width: 50%; 
 }
-
 .auth-body {
     text-align: center;
     margin-top: 10px;
@@ -359,9 +332,9 @@ body{
     color: var(--Light);
 }
 .auth-form input {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 15px;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 8px;
     border: none;
     border-radius: 5px;
     background-color: var(--Light);
@@ -394,6 +367,9 @@ body{
     text-align: center;
     margin-top: 5px;
 }
+.auth-footer a{
+    color: var(--Light);
+}
 .like-icon {
     width: 24px;
     cursor: pointer; 
@@ -411,7 +387,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 300vh;
+    min-height: 70vh;
 }
 .access .dark-text {
     color: var(--Secondary);
@@ -424,5 +400,69 @@ body{
     margin-top: 30px;
 }
 
+* li {
+    color: red;
+}
+.profile{
+    margin-top: 100px;
+    background-color: #1E1E1E;
+    padding: 10px;
+    border-radius: 10px;
+}
+.userphoto{
+    margin-top: 10px;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: var(--Light);
+    border: var(--Light) 2px solid;
+}
+.profile-from{
+    margin-left: 125px;
+}
+.profile-from label{
+    font-weight: 700;
+    display: block;
+    color: var(--Light);
+}
+.profile-from input{
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--Light);
+    color: var(--Black);
+    font-size: 14px;
+}
 
-
+.profile-filter span{
+    display: inline-block;
+    margin: 30px 0;
+    width: 164px;
+    height: 32px;
+    background-color: var(--Light);
+    color: var(--Black);
+    border-radius: 15px;
+    border: var(--Black) 2px solid;
+    font-size: 12px;
+    text-align: center;
+    line-height: 32px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+.profile-filter .active {
+    display: inline-block;
+    margin: 30px 0;
+    width: 164px;
+    height: 32px;
+    background-color: var(--Black);
+    color: var(--Light);
+    border-radius: 15px;
+    border: var(--Light) 2px solid;
+    font-size: 12px;
+    text-align: center;
+    line-height: 32px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}

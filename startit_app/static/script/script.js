@@ -21,17 +21,4 @@ function toggleMenu() {
 //     });
 // });
 
-//Функция изминение стиля кнопки котекории
-document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('.filter-buttons a')
-
-    buttons.forEach(function(a) {
-        a.addEventListener('click', function() {
-            buttons.forEach(function(btn) {
-                btn.classList.remove('active')
-            });
-
-            a.classList.add('active')
-        });
-    });
-}); 
+//Функция изминение стиля кнопки категории

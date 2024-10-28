@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        <div class="container">
+            <div class="profile">
+                <img src="#" alt="" class="userphoto">
+                <div class="profile-from">
+                    <label for="userName">UserName</label>
+                    <input type="text" placeholder="UserName" id="userName" required>
+
+                    <label for="userName">Name</label>
+                    <input type="text" placeholder="Name" id="userName" required>
+
+                    <label for="userName">city</label>
+                    <input type="text" placeholder="city" id="userName" required>
+                </div>
+            </div>
+            <div class="profile-filter">
+                <span class="active">Я посещал </span>
+                <span>Мои Лайки</span>
+            </div>
+        </div>
+{% endblock %}
