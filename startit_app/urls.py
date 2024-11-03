@@ -8,5 +8,6 @@ urlpatterns = [
     path('sign-up/', views.sign_up_page, name='sign_up_page'),
     path('logout/', views.logout_action, name='logout_action'),
     path('quests/<str:filter_type>/<str:filter_value>/', views.filtered_quests, name='filtered_quests'),
-
+    path('profile/', views.profile_page, name='profile_page'),
+    path('profile_liked/', views.profile_liked_page, name='profile_liked_page'),
 ]

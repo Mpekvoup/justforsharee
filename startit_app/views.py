@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Quest, addresesQ, infotxt
+from .models import Quest, addresesQ, infotxt,Profile_pic
 from django.contrib.auth import login, authenticate, logout
 from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -52,18 +52,25 @@ def sign_up_page(request):
     }
     return render(request, "sign_up.html", context)
 
+from django.contrib import messages
+
 def login_page(request):
     if request.method == "POST":
-            form = AuthenticationForm(request,data=request.POST)
-            if form.is_valid():
-                username = form.cleaned_data['username']
-                password = form.cleaned_data['password']
-                user = authenticate(username=username, password=password)
-                if user is not None:
-                    login(request, user)
-                    return redirect('home_page')
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home_page')
+            else:
+                messages.error(request, "Неверное имя пользователя или пароль.")
+        else:
+            messages.error(request, "Пожалуйста, исправьте ошибки в форме.")
     else:
         form = AuthenticationForm()
+
     context = {
         'form': form
     }
@@ -95,3 +102,27 @@ def filtered_quests(request, filter_type=None, filter_value=None):
     }
 
     return render(request, 'filtered_quests.html', context)
+
+def profile_page(request):
+    quests = Quest.objects.all().order_by('?')[:0]
+    infotxts = infotxt.objects.all()
+    pictur = Profile_pic.objects.all()
+
+    context = {
+        'quests' : quests,
+        'infotxts' : infotxts,
+        'pictur' : pictur,
+
+
+    }
+    return render(request, 'profile.html', context)
+
+def profile_liked_page(request):
+    pictur = Profile_pic.objects.all()
+    quests = Quest.objects.all()
+    context = {
+        'quests' : quests,
+        'pictur' : pictur,
+    }
+    return render(request, 'profile_liked.html', context)
+

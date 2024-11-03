@@ -29,7 +29,6 @@
     </div>
 </div> 
 <div class="container">
-    <h2 style="color:#ffffff; font-size: 20px; margin-top: 20px;">Квесты по фильтру: {{ filter_value }}</h2>
     <div class="quest-list">
         {% if quests %}
             {% for quest in quests %}
@@ -42,7 +41,7 @@
                             <img src="{{ quest.image_url }}" alt="" class="card-photo">
                         </div>
                         <p class="quest-description">
-                            {{ quest.description }}
+                            {{ quest.description|truncatechars:100 }}
                         </p>
                         <div class="quest-details">
                             <p>Сложность: <span><strong>{{ quest.slozhno.name }}</strong></span></p>
@@ -50,10 +49,7 @@
                         </div>
                         <div class="quest-footer">
                             <button class="reserve-btn" ><a href="{% url 'book_page' pk=quest.pk %}" class="reserve-btn">
-                                <span class="icon">
-                                    <img src="{% static 'images/menu-page-img/Q-reserve.svg' %}" alt="" class="reserve-icon"{{ quest.name }}>
-                                </span> 
-                                Забронировать
+                                Подробнее
                             </button></a>
                             <img src="{% static 'images/menu-page-img/Q-like.svg' %}" alt="" class="like-icon" id="likeBtn">
                             <span class="age"><strong>{{ quest.age.name }}</strong></span>

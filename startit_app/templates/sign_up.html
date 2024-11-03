@@ -8,12 +8,11 @@
             <div class="auth-tab-active">Регистрация</div>
             <div class="auth-x"><a href="{% url 'home_page' %}">X</a></div>
         </div>
-        <form method="post" action="{% url 'login_page' %}" class="auth-form">
+        <form method="post" class="auth-form">
             {% csrf_token %}
             {{ form }}
             <button type="submit" class="btn-sumbit_reg">Зарегистрироваться</button>
             <div class="auth-footer">Авторизуясь через социальные сети, вы соглашаетесь с правилами пользования сайтом и с политикой обработки персональных данных <br> Форма защищена Google reCAPTCHA (политика обработки персональных данных, условия работы)</div>
-        
             <p class="auth-footer"> Если у вас есть аккаунт, перейдите по <a href="{% url 'login_page' %} ">ССЫЛКЕ</a></p>                
         </form>
     </div>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block profile %}
+<div class="container">
+    <div class="profile">
+        {% for pic in pictur %}
+        <img src="{{ pic.image_profile_url }}" alt="" class="userphoto">
+        <div class="profile-from">
+            <label for="userName">Никнейм:</label>
+            <div>{{ user.username }}</div>
+            <label for="userName">Имя:</label>
+            <div>{{user.first_name}}</div>
+            <label for="userName">Город:</label>
+            <select id="city" name="city">
+                <option value="moscow">Алматы</option>
+                <option value="saint-petersburg">Астана</option>
+                <option value="novosibirsk">Шымкент</option>
+            </select>
+        </div>
+    </div>
+            </div>
+            {%endfor%}
+{% endblock %}
+{% block content %}
+            <div class="profile-filter">
+                <a href="{%url 'profile_page'%}" class="pot">Я посещал</a>
+                <a href="#" class="active">Мои Лайки</a>
+            </div>
+        </div>
+{% endblock %}

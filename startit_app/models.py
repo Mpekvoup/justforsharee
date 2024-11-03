@@ -103,7 +103,8 @@ class Quest(models.Model):
     age = models.ForeignKey(age, on_delete=models.CASCADE, verbose_name="Выберите возраст")
     created_at = models.DateTimeField(verbose_name="Время создания", default=datetime.now)
     slug = models.SlugField(unique=True, editable=False, blank=True)
-    price = models.DecimalField("Цена", max_digits=10, decimal_places=2, default=1000)  
+    price = models.DecimalField("Цена", max_digits=10, decimal_places=2, default=1000)
+    
 
 
     class Meta:
@@ -130,7 +131,7 @@ class addresesQ(models.Model):
     waitroom = models.CharField("Зона ожидания:", max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True, editable=False, blank=True)
-    quest = models.ForeignKey(Quest, on_delete=models.CASCADE, related_name='addresses', verbose_name="Квест")
+    quest = models.ForeignKey(Quest, on_delete=models.CASCADE, related_name='addresses', verbose_name="Квест", default=1)
 
 
     class Meta:
@@ -147,12 +148,9 @@ class addresesQ(models.Model):
 
 
 class infotxt(models.Model):
-    title= models.CharField("Описание", max_length=500)
+    title = models.CharField("Описание", max_length=500)
     slug = models.SlugField(unique=True, editable=False, blank=True)
     created_at = models.DateTimeField(verbose_name="Время создания", default=datetime.now)
-
-
-
 
     class Meta:
         verbose_name = "Описание"
@@ -161,9 +159,24 @@ class infotxt(models.Model):
     def __str__(self):
         return f"{self.title} - {self.created_at}"
 
-
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+class Profile_pic (models.Model):
+    slug = models.SlugField(unique=True, editable=False, blank=True)
+    name = models.CharField("Название фотки", max_length=255, default="Контакты")
+    image_profile_url = models.URLField("Вставьте изображение", max_length=500, default='', blank=True)
+    class Meta:
+        verbose_name = "Профиль фотка"
+        verbose_name_plural = "Профильные фотки"
+
+    def __str__(self):
+        return f"{self.pk} - {self.slug} - {self.name}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
