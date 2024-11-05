@@ -82,7 +82,6 @@ def logout_action(request):
 
 def filtered_quests(request, filter_type=None, filter_value=None):
     quests = Quest.objects.all()
-
     if filter_type == 'age':
         quests = quests.filter(age__name=filter_value)
     elif filter_type == 'slozhno':
