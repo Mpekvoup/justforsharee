@@ -119,6 +119,29 @@ class Quest(models.Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+class QuestProfile(models.Model):
+    name = models.CharField("Название квеста", max_length=255)
+    image_url = models.URLField("Вставьте изображение", max_length=500, default='', blank=True)
+    description = models.TextField("Описание квеста", default="Описание отсутствует")
+    slozhno = models.ForeignKey(slozhno, on_delete=models.CASCADE, verbose_name="Выберите сложность")
+    strashno = models.ForeignKey(strashno, on_delete=models.CASCADE, verbose_name="Выберите страшность")
+    age = models.ForeignKey(age, on_delete=models.CASCADE, verbose_name="Выберите возраст")
+    created_at = models.DateTimeField(verbose_name="Время создания", default=datetime.now)
+    slug = models.SlugField(unique=True, editable=False, blank=True)
+    price = models.DecimalField("Цена", max_digits=10, decimal_places=2, default=1000)
+    
+
+    class Meta:
+        verbose_name = "Квест профиля"
+        verbose_name_plural = "Квесты профиля"
+
+    def __str__(self):
+        return f"{self.pk} - {self.name} - {self.created_at}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 class addresesQ(models.Model):
     name = models.CharField("Название контакта", max_length=255, default="Контакты")
     image_url = models.URLField("Вставьте изображение", max_length=500, default='', blank=True)

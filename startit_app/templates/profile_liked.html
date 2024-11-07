@@ -27,4 +27,28 @@
                 <a href="#" class="active">Мои Брони</a>
             </div>
         </div>
+        {% for quest in qprofile %}
+        <div class="quest-card">
+            <div class="quest-container1">
+                <div>
+                    <a href="{% url 'book_page' pk=quest.pk %}" class="quest-title">{{ quest.name }}</a>
+                </div>
+                <div class="quest-image">
+                    <img src="{{ quest.image_url }}" alt="" class="card-photo">
+                </div>
+                <p class="quest-description">
+                    {{ quest.description|truncatechars:100 }}
+                </p>
+                <div class="quest-details">
+                    <p>Сложность: <span><strong>{{ quest.slozhno.name }}</strong></span></p>
+                    <p>Страшность: <span><strong>{{ quest.strashno.name }}</strong></span></p>
+                </div>
+                <div class="quest-footer">
+                    <button class="reserve-btn" ><a href="{% url 'book_page' pk=quest.pk %}" class="reserve-btn">Подробнее</a></button>
+                    <img src="{% static 'images/menu-page-img/Q-like.svg' %}" alt="" class="like-icon" id="likeBtn">
+                    <span class="age"><strong>{{ quest.age.name }}</strong></span>
+                </div>                
+            </div>
+        </div>
+        {% endfor %}
 {% endblock %}

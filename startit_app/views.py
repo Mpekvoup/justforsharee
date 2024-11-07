@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Quest, addresesQ, infotxt,Profile_pic
+from .models import Quest, addresesQ, infotxt,Profile_pic,QuestProfile
 from django.contrib.auth import login, authenticate, logout
 from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -103,24 +103,22 @@ def filtered_quests(request, filter_type=None, filter_value=None):
     return render(request, 'filtered_quests.html', context)
 
 def profile_page(request):
-    quests = Quest.objects.all().order_by('?')[:0]
+    qprofile = QuestProfile.objects.all().order_by('?')[:1]
     infotxts = infotxt.objects.all()
     pictur = Profile_pic.objects.all()
 
     context = {
-        'quests' : quests,
+        'qprofile' : qprofile,
         'infotxts' : infotxts,
         'pictur' : pictur,
-
-
     }
     return render(request, 'profile.html', context)
 
 def profile_liked_page(request):
     pictur = Profile_pic.objects.all()
-    quests = Quest.objects.all()
+    qprofile = QuestProfile.objects.all().order_by('?')[:1]
     context = {
-        'quests' : quests,
+        'qprofile' : qprofile,
         'pictur' : pictur,
     }
     return render(request, 'profile_liked.html', context)
